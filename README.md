@@ -1,4 +1,4 @@
-<project_name>
+Prediction Of Drought Levels
 ==============================
 
 <A short description of your project.>
