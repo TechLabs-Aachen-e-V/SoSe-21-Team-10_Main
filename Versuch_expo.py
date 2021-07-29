@@ -32,12 +32,17 @@ plt.xticks(np.arange(0, 1100, 98))
 ################################################################################################################################
 
 
-train = df_data.loc['2000-01-04':'2000-01-31', :]
+train = df_data.loc['2000-01-04':'2000-12-31', :]
 
-train_score = pd.DataFrame(train, columns = [ 'score'])
-print(train_score)
+train_score = pd.DataFrame(train, columns = ['score'])
 
-df_smoothing = ExponentialSmoothing(train_score, trend='add', seasonal='add',seasonal_periods=7 ).fit(smoothing_level=0.2, optimized = False )
+df_intpol = train_score.interpolate(method='time')
+df_intpol.dropna(how='any', inplace=True)
+np_train_score = df_intpol.values
+
+
+
+df_smoothing = ExponentialSmoothing(np_train_score, trend='add', seasonal='add',seasonal_periods=7 ).fit(smoothing_level=0.2, optimized = False )
 
 #out = pd.DataFrame(df_smoothing).set_index(train.index)
 
