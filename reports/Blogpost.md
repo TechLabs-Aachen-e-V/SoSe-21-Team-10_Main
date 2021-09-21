@@ -73,7 +73,7 @@ But we still had to find a way to deal with the missing data. Another common tac
 ![figure_3.png](figures/figure_3.png)   
 The approach we choose was 'Interpolation'. In specific, we used the 'time' method. This method takes two values of the score and fills the values between them with values that make more sense.
 When we do this we get a much more promising result:  
-![figure_5.png](figures/figure_3.png)  
+![figure_5.png](figures/figure_5.png)  
 With the interpolated values we were able to start trying out different models using different approaches.
 
 _Models and results_
