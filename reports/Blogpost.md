@@ -58,21 +58,22 @@ There are six levels of drought according to the U.S. Drought Monitor[QUELLE DRO
 
 In the dataset, these levels are a numerical feature. So 1=D0, 2=D1, etc..
 The plotted feature (over 3 years 2000-2002) looks like this:
-![figure_1.png](/figures/figure_1.png)  
+
+![figure_1.png](figures/figure_1.png)  
 If we take a look at a smaller period we notice a problem, we have missing values in our data.  
-![figure_2.png](/figures/figure_2.png)
+![figure_2.png](figures/figure_2.png)
 
 **_Missing values_**
 
 The missing values were a problem at first because machine learning models don't work with data that contains NaN values (NaN = not a number). Taking a look at the NaN values in all columns (of the years 2000-2002) we get the following result:    
-![figure_6.png](/figures/figure_6.png)  
+![figure_6.png](figures/figure_6.png)  
 We see that the score column contains 939 missing values. The total number of values in this data frame is 1096, which means that roughly 86% of the data is missing. This means that we can't just delete the rows which contain missing data (this is a common way to deal with missing data).  
 Taking a closer look at the description of the dataset on Kaggle, we can see that the missing values make sense. The score feature is a feature that is only measured once a week. So we have one data point and then 6 missing data points.  
 But we still had to find a way to deal with the missing data. Another common tactic is to compute the mean of all the entries in the column, and then the missing values all get filled with the mean. This made no sense in our case, due to the nature of the dataset and the mass of missing values. It also would have distorted the dataset way too much.  
-![figure_3.png](/figures/figure_3.png)   
+![figure_3.png](figures/figure_3.png)   
 The approach we choose was 'Interpolation'. In specific, we used the 'time' method. This method takes two values of the score and fills the values between them with values that make more sense.
 When we do this we get a much more promising result:  
-![figure_5.png](/figures/figure_3.png)  
+![figure_5.png](figures/figure_3.png)  
 With the interpolated values we were able to start trying out different models using different approaches.
 
 _Models and results_
