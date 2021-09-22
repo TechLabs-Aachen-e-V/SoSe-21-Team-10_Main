@@ -110,7 +110,7 @@ Then the shifted target variable looks like this:
 | 2     | 3      |
 | 3     | 4      |
 | 4     | 5      |
-| 5     | Nan    |
+| 5     | NaN    |
 
 After that, we can start by fitting the model to the data and make predictions. The first predictions on a subset of the data (2000-2002) looked very promising.  
 ![figure_8.png](figures/figure_8.png)
