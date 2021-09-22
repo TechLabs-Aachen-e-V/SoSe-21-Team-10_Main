@@ -16,7 +16,8 @@ extreme (D3) and exceptional (D4). The NASA POWER Project provides solar and met
 
 ## Method
 
-**_Exploratory data analysis_**  
+### Exploratory data analysis
+
 In the Kaggle dataset, we were given a "train time series" which contains roughly 16 years of data. Due to the sheer size of this time series, we decided to cut the dataset down to 2 years for our first explorations and the first model testings. So we did all the following explorations with the years 2000 until 2002.  
 The dataset contains 21 different columns, with one of them being a date column, which we used as the index column in our exploration.  
 The columns contain the following information:
@@ -42,9 +43,7 @@ The columns contain the following information:
 | T2MWET      | Wet Bulb Temperature at 2 Meters (C)  |
 | PRECTOT     | Precipitation (mm day-1)              |
 
-
 Plus, three additional columns contain non-meteorological data:
-
 
 | Indicator | Description                                                                                                |
 | --------- | ---------------------------------------------------------------------------------------------------------- |
@@ -63,20 +62,62 @@ The plotted feature (over 3 years 2000-2002) looks like this:
 If we take a look at a smaller period we notice a problem, we have missing values in our data.  
 ![figure_2.png](figures/figure_2.png)
 
-**_Missing values_**
+### Missing values
 
-The missing values were a problem at first because machine learning models don't work with data that contains NaN values (NaN = not a number). Taking a look at the NaN values in all columns (of the years 2000-2002) we get the following result:    
-![figure_6.png](figures/figure_6.png)  
+The missing values were a problem at first because machine learning models don't work with data that contains NaN values (NaN = not a number). Taking a look at the NaN values in all columns (of the years 2000-2002) we get the following result:
+
+![figure_6.png](figures/figure_6.png)
+
 We see that the score column contains 939 missing values. The total number of values in this data frame is 1096, which means that roughly 86% of the data is missing. This means that we can't just delete the rows which contain missing data (this is a common way to deal with missing data).  
 Taking a closer look at the description of the dataset on Kaggle, we can see that the missing values make sense. The score feature is a feature that is only measured once a week. So we have one data point and then 6 missing data points.  
 But we still had to find a way to deal with the missing data. Another common tactic is to compute the mean of all the entries in the column, and then the missing values all get filled with the mean. This made no sense in our case, due to the nature of the dataset and the mass of missing values. It also would have distorted the dataset way too much.  
-![figure_3.png](figures/figure_3.png)   
+![figure_3.png](figures/figure_3.png)  
 The approach we choose was 'Interpolation'. In specific, we used the 'time' method. This method takes two values of the score and fills the values between them with values that make more sense.
 When we do this we get a much more promising result:  
 ![figure_5.png](figures/figure_5.png)  
 With the interpolated values we were able to start trying out different models using different approaches.
 
-_Models and results_
+### Models and results
+
+We tried different approaches. Since this is a time series forecasting problem, where you want to predict the value of a target variable over a time period. For time series forecasting there are two categories of models that one can use. More specific we have a univariate time series problem. This means that we want to predict one variable, in our case the score variable.  
+For univariate time series, there are "traditional time series models", like ARIMA, SARIMAX or Prophet. Also, there are "machine learning models" like linear regression, logistic regression and random forest, to name a few.  
+In the first stage of our project, the plan was, that everyone tries a different approach on a subset of the whole dataset (the years 2000-2002) and then we will evaluate which model performs best. After that, we wanted to use the best performing model to train on the whole dataset for the final prediction.  
+The models we then tried were Exponential Smoothing, ARIMA, Random Forest Regression, Prophet and an LSTM Neural Network.  
+**_Arima_**  
+We had some problems with the ARIMA model since we had to do differentiate the data since it was not stationary. The predictions for the differenced data were promising. But if we transformed this data back the predictions weren't that good, like the plots, show:  
+[ARIMA DIFFERENCED PREDICTION + ARIMA FINAL PREDICTION]
+[Description of the plots]  
+**_Random Forest_**  
+The model that we finally decided to use was a Random Forest Regression model. Since this is a machine learning model, we have to transform our time series to a supervised learning problem first.  
+A supervised learning problem is a problem where we have one target/dependent variable, that we want to predict based on one or more independent variables.  
+To transform this time series into a supervised learning problem we have to create a new variable, which becomes the target variable, which is the shifted score variable. It is shifted by one day. This sounds more complex than it is.  
+Let's take a look at this example:  
+Let's consider this to be the first five values of our score variable:
+
+| score |
+| ----- |
+| 1     |
+| 2     |
+| 3     |
+| 4     |
+| 5     |
+
+Then the shifted target variable looks like this:
+
+| score | target |
+| ----- | ------ |
+| 1     | 2      |
+| 2     | 3      |
+| 3     | 4      |
+| 4     | 5      |
+| 5     | Nan    |
+
+After that, we can start by fitting the model to the data and make predictions. The first predictions on a subset of the data (2000-2002) looked very promising.  
+![figure_8.png](figures/figure_8.png)
+A concern we had was data leakage. This is, in simple terms, when the model has access to data, which it should not have had and makes predictions based on that. The problem is, that these models perform great in testing, but poorly in the "real world".  
+So we picked some random months from another year of data that the model had never seen and made predictions. These predictions looked also really good.  
+![figure_9.png](figures/figure_9.png)
+So we were able to to try the model on the whole dataset.
 
 ## Project Results
 
