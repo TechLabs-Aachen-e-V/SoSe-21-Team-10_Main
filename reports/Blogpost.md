@@ -117,10 +117,22 @@ After that, we can start by fitting the model to the data and make predictions. 
 A concern we had was data leakage. This is, in simple terms, when the model has access to data, which it should not have had and makes predictions based on that. The problem is, that these models perform great in testing, but poorly in the "real world".  
 So we picked some random months from another year of data that the model had never seen and made predictions. These predictions looked also really good.  
 ![figure_9.png](figures/figure_9.png)
-So we were able to to try the model on the whole dataset.
+So we were able to try the model on the whole dataset.
 
 ## Project Results
 
+The next step was to train the model on the whole training set. After that we imported the test set and made predictions, which you can see here:  
+[TEST PREDICTIONS]  
+After that, we also had a validation set. So we could make another test with the model. The predictions you can see here:  
+[VALIDATION PREDICTIONS]  
+But there is a disclaimer:  
+In the different datasets (training, test and validation) there were different fips numbers. The datasets were ordered in the following way.  
+[TABELLE ORDER ERKLÄRUNG]  
+But for the purpose of don't mess up with the time series we trained, tested and validated the model only for the fips number "1001".  
+But it should work as good for the other numbers because before we fit the model we deleted the fips column. We did this because it didn't have any effect on the data.
+
 ## Conclusion
+
+We were able to get some good results in predicting the drought score for the regions. But there could be done more. For example, it is possible to try a Neural Network approach to this problem. On Kaggle there is an example where an LSTM (Long-short term memory) Neural Network was used[QUELLE KAGGLE LSTM]. Another approach could be to instead of a regression model is to use a classification model. So that you feed the meteorological data to the model and it predicts which drought category this would be. This is a great example of data that can be used in different ways.
 
 ## References
