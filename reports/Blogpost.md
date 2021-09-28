@@ -148,6 +148,14 @@ But it should work as good for the other numbers because before we fit the model
 
 We were able to get some good results in predicting the drought score for the regions. But there could be done more. For example, it is possible to try a Neural Network approach to this problem. On Kaggle there is an example where an LSTM (Long-short term memory) Neural Network was used<sup>[4]</sup>. Another approach could be to instead of a regression model is to use a classification model. So that you feed the meteorological data to the model and it predicts which drought category this would be. This is a great example of data that can be used in different ways.
 
+## Team
+
+Doriel Habasllari - Mentor  
+Ole Seifert - Data Science  
+Lena Engler - Data Science  
+Yingen - Data Science  
+Hannes Bernhard - Data Science
+
 ## References
 
 [1] [Wikpedia](https://en.wikipedia.org/wiki/Climate_change)  
