@@ -2,14 +2,14 @@
 
 ## Introduction
 
-In the last years, climate change has become a more popular topic in the worldwide news. It affects our lives in multiple areas. One popular effect that it has is global warming. It is the effect that, due to human-induced greenhouse gas emissions, the average temperature will rise in the lower levels of the atmosphere. (Zitat Wikipedia)  
+In the last years, climate change has become a more popular topic in the worldwide news. It affects our lives in multiple areas. One popular effect that it has is global warming. It is the effect that, due to human-induced greenhouse gas emissions, the average temperature will rise in the lower levels of the atmosphere<sup>[1]</sup>.    
 With the rise of the average temperature drought periods will happen more often. This is especially problematic for countries whose average temperature is already higher than the average temperature in Germany.  
 The effect is particularly bad for agriculture.  
 The weather forecast is often only accurate for the next few days. What if there was a method to predict the rough drought level for a longer timespan? This is where our project comes into play.
 
 ## Dataset
 
-We used a Dataset from Kaggle.com which contained weather data from the US from the years 2000 until 2020. In the dataset, the feature variable was a score ranging from 0 (no drought) to 5 (D4). D4 is the highest level of drought. There are six levels of drought possible. (Bild einfügen) This dataset was constructed with data from the US Drought Monitor and the NASA POWER Project.  
+We used a Dataset from Kaggle which contained weather data from the US from the years 2000 until 2020<sup>[2]</sup>. In the dataset, the feature variable was a score ranging from 0 (no drought) to 5 (D4). D4 is the highest level of drought. There are six levels of drought possible<sup>[3]</sup>. This dataset was constructed with data from the US Drought Monitor and the NASA POWER Project.  
 The U.S. Drought Monitor is a map released every Thursday, showing parts of the U.S. that are in drought. The map uses five classifications:  
 abnormally dry (D0), showing areas that may be going into or are coming out of drought, and four levels of drought: moderate (D1), severe (D2),  
 extreme (D3) and exceptional (D4). The NASA POWER Project provides solar and meteorological data sets from NASA research for support of renewable energy, building energy efficiency and agricultural needs.
@@ -52,7 +52,7 @@ Plus, three additional columns contain non-meteorological data:
 | score     | Measure of drought ranging from 0 (no drought) to 5 (D4, see description)                                  |
 
 But first, let's take a look at the score variable and its description.
-There are six levels of drought according to the U.S. Drought Monitor[QUELLE DROUGHT MONITOR].
+There are six levels of drought according to the U.S. Drought Monitor<sup>[3]</sup>[QUELLE DROUGHT MONITOR].
 ![figure_7.png](figures/figure_7.png)
 
 In the dataset, these levels are a numerical feature. So 1=D0, 2=D1, etc..
@@ -122,17 +122,36 @@ So we were able to try the model on the whole dataset.
 ## Project Results
 
 The next step was to train the model on the whole training set. After that we imported the test set and made predictions, which you can see here:  
-[TEST PREDICTIONS]  
+![figure_10.png](figures/figure_10.png)  
 After that, we also had a validation set. So we could make another test with the model. The predictions you can see here:  
-[VALIDATION PREDICTIONS]  
+![figure_11.png](figures/figure_11.png)
 But there is a disclaimer:  
 In the different datasets (training, test and validation) there were different fips numbers. The datasets were ordered in the following way.  
-[TABELLE ORDER ERKLÄRUNG]  
+
+| fips | date       |
+| ---- | ---------- |
+| 1001 | 01.01.2000 |
+| 1001 | 02.01.2000 |
+| ...  | ...        |
+| 1001 | 31.12.2016 |
+| 1002 | 01.01.2000 |
+| 1002 | 02.01.2000 |
+| ...  | ...        |
+| 1002 | 31.12.2016 |
+| 1003 | 01.01.2000 |
+| ...  | ...        |
+
 But for the purpose of don't mess up with the time series we trained, tested and validated the model only for the fips number "1001".  
 But it should work as good for the other numbers because before we fit the model we deleted the fips column. We did this because it didn't have any effect on the data.
 
 ## Conclusion
 
-We were able to get some good results in predicting the drought score for the regions. But there could be done more. For example, it is possible to try a Neural Network approach to this problem. On Kaggle there is an example where an LSTM (Long-short term memory) Neural Network was used[QUELLE KAGGLE LSTM]. Another approach could be to instead of a regression model is to use a classification model. So that you feed the meteorological data to the model and it predicts which drought category this would be. This is a great example of data that can be used in different ways.
+We were able to get some good results in predicting the drought score for the regions. But there could be done more. For example, it is possible to try a Neural Network approach to this problem. On Kaggle there is an example where an LSTM (Long-short term memory) Neural Network was used<sup>[4]</sup>. Another approach could be to instead of a regression model is to use a classification model. So that you feed the meteorological data to the model and it predicts which drought category this would be. This is a great example of data that can be used in different ways.
 
 ## References
+
+[1] [Wikpedia](https://en.wikipedia.org/wiki/Climate_change)  
+[2] [Kaggle Dataset](https://www.kaggle.com/cdminix/us-drought-meteorological-data)  
+[3] [Drought Monitor](https://droughtmonitor.unl.edu/About/WhatistheUSDM.aspx)  
+[4] [Kaggle LSTM Model](https://www.kaggle.com/cdminix/lstm-baseline)  
+[5] [Github Repository](https://github.com/TechLabs-Aachen-e-V/SoSe-21-Team-10_Main)
