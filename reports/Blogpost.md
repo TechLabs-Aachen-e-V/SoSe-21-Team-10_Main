@@ -84,9 +84,19 @@ For univariate time series, there are "traditional time series models", like ARI
 In the first stage of our project, the plan was, that everyone tries a different approach on a subset of the whole dataset (the years 2000-2002) and then we will evaluate which model performs best. After that, we wanted to use the best performing model to train on the whole dataset for the final prediction.  
 The models we then tried were Exponential Smoothing, ARIMA, Random Forest Regression, Prophet and an LSTM Neural Network.  
 **_Arima_**  
-We had some problems with the ARIMA model since we had to do differentiate the data since it was not stationary. The predictions for the differenced data were promising. But if we transformed this data back the predictions weren't that good, like the plots, show:  
-[ARIMA DIFFERENCED PREDICTION + ARIMA FINAL PREDICTION]
-[Description of the plots]  
+We had some problems with the ARIMA model since we had to do differentiate the data since it was not stationary. This is a step you have to do, in order to create an ARIMA model[Quelle ARIMA]. The predictions for the differenced data were promising. But if we transformed this data back the predictions weren't that good, like the plots, show:  
+![figure_13.png](figures/figure_13.png)
+![figure_14.png](figures/figure_14.png)  
+_In the upper plot the blue line is the differenced score value and the other line is the ARIMA prediction_  
+_In the bottom plot the blue line is the score value and the other line is the ARIMA prediction_  
+On the differenced data the model predicted quite good, but after transforming the data back the predictions were quite bad. 
+So we decided to continue with another approach.  
+**_Prophet_**  
+Prophet is a model which was built by Facebook. It makes time series forecasting simple.  
+You have to provide it with a date column and the target variable column, which you want to predict.  
+We did this, but the problem was that the score variable (our target variable) is in the range from 0 to 5. In the Prophet model, there is no way to set boundaries to the predictions, so the model predicted the following:  
+![figure_12.png](figures/figure_12.png)  
+From a prediction side, the predictions make sense, but in the context of our problem, they make no sense because there is no Drought Level that matches negative values. Due to that reason, we decided to not continue with the prophet model.  
 **_Random Forest_**  
 The model that we finally decided to use was a Random Forest Regression model. Since this is a machine learning model, we have to transform our time series to a supervised learning problem first.  
 A supervised learning problem is a problem where we have one target/dependent variable, that we want to predict based on one or more independent variables.  
@@ -125,7 +135,7 @@ The next step was to train the model on the whole training set. After that we im
 ![figure_10.png](figures/figure_10.png)  
 After that, we also had a validation set. So we could make another test with the model. The predictions you can see here:  
 ![figure_11.png](figures/figure_11.png)
-But there is a disclaimer:  
+But there is a **disclaimer**:  
 In the different datasets (training, test and validation) there were different fips numbers. The datasets were ordered in the following way.  
 
 | fips | date       |
