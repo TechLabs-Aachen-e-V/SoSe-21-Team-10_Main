@@ -97,6 +97,8 @@ You have to provide it with a date column and the target variable column, which 
 We did this, but the problem was that the score variable (our target variable) is in the range from 0 to 5. In the Prophet model, there is no way to set boundaries to the predictions, so the model predicted the following:  
 ![figure_12.png](figures/figure_12.png)  
 From a prediction side, the predictions make sense, but in the context of our problem, they make no sense because there is no Drought Level that matches negative values. Due to that reason, we decided to not continue with the prophet model.  
+**_LSTM Neural Network_**  
+At the time this article was written, we did not hear back from the team member who was responsible for this model. So we sadly have nothing to present on this approach.  
 **_Random Forest_**  
 The model that we finally decided to use was a Random Forest Regression model. Since this is a machine learning model, we have to transform our time series to a supervised learning problem first.  
 A supervised learning problem is a problem where we have one target/dependent variable, that we want to predict based on one or more independent variables.  
