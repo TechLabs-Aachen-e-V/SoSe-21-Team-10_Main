@@ -84,7 +84,7 @@ For univariate time series, there are "traditional time series models", like ARI
 In the first stage of our project, the plan was, that everyone tries a different approach on a subset of the whole dataset (the years 2000-2002) and then we will evaluate which model performs best. After that, we wanted to use the best performing model to train on the whole dataset for the final prediction.  
 The models we then tried were Exponential Smoothing, ARIMA, Random Forest Regression, Prophet and an LSTM Neural Network.  
 **_Arima_**  
-We had some problems with the ARIMA model since we had to do differentiate the data since it was not stationary. This is a step you have to do, in order to create an ARIMA model[Quelle ARIMA]. The predictions for the differenced data were promising. But if we transformed this data back the predictions weren't that good, like the plots, show:  
+We had some problems with the ARIMA model since we had to do differentiate the data since it was not stationary. This is a step you have to do, in order to create an ARIMA model<sup>[4]</sup>. The predictions for the differenced data were promising. But if we transformed this data back the predictions weren't that good, like the plots, show:  
 ![figure_13.png](figures/figure_13.png)
 ![figure_14.png](figures/figure_14.png)  
 _In the upper plot the blue line is the differenced score value and the other line is the ARIMA prediction_  
@@ -156,7 +156,7 @@ But it should work as good for the other numbers because before we fit the model
 
 ## Conclusion
 
-We were able to get some good results in predicting the drought score for the regions. But there could be done more. For example, it is possible to try a Neural Network approach to this problem. On Kaggle there is an example where an LSTM (Long-short term memory) Neural Network was used<sup>[4]</sup>. Another approach could be to instead of a regression model is to use a classification model. So that you feed the meteorological data to the model and it predicts which drought category this would be. This is a great example of data that can be used in different ways.
+We were able to get some good results in predicting the drought score for the regions. But there could be done more. For example, it is possible to try a Neural Network approach to this problem. On Kaggle there is an example where an LSTM (Long-short term memory) Neural Network was used<sup>[5]</sup>. Another approach could be to instead of a regression model is to use a classification model. So that you feed the meteorological data to the model and it predicts which drought category this would be. This is a great example of data that can be used in different ways.
 
 ## Team
 
@@ -171,5 +171,6 @@ Hannes Bernhard - Data Science
 [1] [Wikpedia](https://en.wikipedia.org/wiki/Climate_change)  
 [2] [Kaggle Dataset](https://www.kaggle.com/cdminix/us-drought-meteorological-data)  
 [3] [Drought Monitor](https://droughtmonitor.unl.edu/About/WhatistheUSDM.aspx)  
-[4] [Kaggle LSTM Model](https://www.kaggle.com/cdminix/lstm-baseline)  
-[5] [Github Repository](https://github.com/TechLabs-Aachen-e-V/SoSe-21-Team-10_Main)
+[4] [ARIMA](https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/)  
+[5] [Kaggle LSTM Model](https://www.kaggle.com/cdminix/lstm-baseline)  
+[6] [Github Repository](https://github.com/TechLabs-Aachen-e-V/SoSe-21-Team-10_Main)
