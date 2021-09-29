@@ -132,6 +132,7 @@ So we picked some random months from another year of data that the model had nev
 So we were able to try the model on the whole dataset.
 
 **_Expnentail Smooothing_** 
+
 This function is using rule of thumb, by averaging the past results and assign them to an equal weight.
 As in the case of the other approaches we had as well a problem with the datase and it´s missing values. We also tried fixing this problem by applying the interpolation function on the dataset. This did not fix all problems and we decided against this method, because of it´s bad precision.
 
