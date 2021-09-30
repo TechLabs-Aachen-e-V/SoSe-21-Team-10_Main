@@ -165,7 +165,7 @@ We were able to get some good results in predicting the drought score for the re
 Doriel Habasllari - Mentor  
 Ole Seifert - Data Science  
 Lena Engler - Data Science  
-Yingen - Data Science  
+Yingen Xu - Data Science  
 Hannes Bernhard - Data Science
 
 ## References
