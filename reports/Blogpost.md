@@ -52,7 +52,7 @@ Plus, three additional columns contain non-meteorological data:
 | score     | Measure of drought ranging from 0 (no drought) to 5 (D4, see description)                                  |
 
 But first, let's take a look at the score variable and its description.
-There are six levels of drought according to the U.S. Drought Monitor<sup>[3]</sup>[QUELLE DROUGHT MONITOR].
+There are six levels of drought according to the U.S. Drought Monitor<sup>[3]</sup>.
 ![figure_7.png](figures/figure_7.png)
 
 In the dataset, these levels are a numerical feature. So 1=D0, 2=D1, etc..
@@ -170,8 +170,7 @@ We were able to get some good results in predicting the drought score for the re
 Doriel Habasllari - Mentor  
 Ole Seifert - Data Science  
 Lena Engler - Data Science  
-Yingen Xu - Data Science  
-Hannes Bernhard - Data Science
+Yingen Xu - Data Science
 
 ## References
 
