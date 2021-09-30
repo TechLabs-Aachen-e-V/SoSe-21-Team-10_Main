@@ -99,6 +99,9 @@ We did this, but the problem was that the score variable (our target variable) i
 From a prediction side, the predictions make sense, but in the context of our problem, they make no sense because there is no Drought Level that matches negative values. Due to that reason, we decided to not continue with the prophet model.  
 **_LSTM Neural Network_**  
 At the time this article was written, we did not hear back from the team member who was responsible for this model. So we sadly have nothing to present on this approach.  
+**_Exponential Smoothing_**  
+This function is using a rule of thumb, by averaging the past results and assign them to equal weight.   
+As in the case of the other approaches, we had as well a problem with the dataset and its missing values. We also tried fixing this problem by applying the interpolation function on the dataset. This did not fix all problems and we decided against this method, because of its bad precision.  
 **_Random Forest_**  
 The model that we finally decided to use was a Random Forest Regression model. Since this is a machine learning model, we have to transform our time series to a supervised learning problem first.  
 A supervised learning problem is a problem where we have one target/dependent variable, that we want to predict based on one or more independent variables.  
@@ -131,10 +134,7 @@ So we picked some random months from another year of data that the model had nev
 ![figure_9.png](figures/figure_9.png)
 So we were able to try the model on the whole dataset.
 
-**_Expnentail Smooothing_** 
 
-This function is using rule of thumb, by averaging the past results and assign them to an equal weight.
-As in the case of the other approaches we had as well a problem with the datase and it´s missing values. We also tried fixing this problem by applying the interpolation function on the dataset. This did not fix all problems and we decided against this method, because of it´s bad precision.
 
 ## Project Results
 
